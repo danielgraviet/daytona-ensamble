@@ -1,9 +1,0 @@
-{
-  "variant_name": "super_readable",
-  "passed": true,
-  "stdout": "TESTS PASSED",
-  "stderr": "",
-  "runtime_ms": 866.563125000539,
-  "exit_code": 0,
-  "generation_ms": 1590.9518749976996
-}

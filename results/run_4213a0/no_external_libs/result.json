@@ -1,9 +1,0 @@
-{
-  "variant_name": "no_external_libs",
-  "passed": true,
-  "stdout": "TESTS PASSED",
-  "stderr": "",
-  "runtime_ms": 782.5976249987434,
-  "exit_code": 0,
-  "generation_ms": 1149.2949579987908
-}

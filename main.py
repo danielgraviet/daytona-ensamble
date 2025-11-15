@@ -92,7 +92,7 @@ async def _run_single_problem(orch, model_name):
     # 5. Offer to show code
     # -----------------------------------------
     if Confirm.ask("Show solution code for this variant?", default=False):
-        run_dir = next((p for p in orch.artifacts_dir.iterdir() if p.is_dir()), None)
+        run_dir = getattr(orch, "last_run_dir", None)
         if run_dir:
             variant_dir = run_dir / fastest.variant_name
             code_path = variant_dir / "solution.py"
@@ -101,6 +101,8 @@ async def _run_single_problem(orch, model_name):
                 console.print(Panel.fit(code_text, title=f"{fastest.variant_name}.py"))
             else:
                 console.print("[red]No solution file found.[/red]")
+        else:
+            console.print("[red]No run artifacts directory available.[/red]")
 
 async def main():
     _banner()

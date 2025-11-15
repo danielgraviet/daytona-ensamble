@@ -95,6 +95,7 @@ class Orchestrator:
         self.llm = llm
         self.artifacts_dir = Path(artifacts_dir)
         self.artifacts_dir.mkdir(parents=True, exist_ok=True)
+        self.last_run_dir: Path | None = None
 
         self._num_sandboxes = num_sandboxes or len(VARIANTS)
         self._sandboxes: List[DaytonaSandboxRunner] = [
@@ -117,6 +118,7 @@ class Orchestrator:
         run_id = run_id or uuid.uuid4().hex[:6]
         run_dir = self.artifacts_dir / f"run_{run_id}"
         run_dir.mkdir(parents=True, exist_ok=True)
+        self.last_run_dir = run_dir
 
         # Pretty header
         _print_header(problem, run_id)
