@@ -90,33 +90,28 @@ async def main():
     console.print("[bold green]Starting ensemble generation + execution...[/bold green]\n")
     results = await orch.run_problem(problem)
 
-    # -----------------------------------------
-    # 6. Let user inspect best code
-    # -----------------------------------------
-    passed_variants = [r for r in results if r.passed]
-    best = passed_variants[0] if passed_variants else results[0]
+    fastest = min(results, key=lambda r: r.runtime_ms)
 
     console.print(
         Panel.fit(
-            f"[bold green]Best Variant:[/bold green] {best.variant_name}\n"
-            f"[white]Runtime:[/white] {best.runtime_ms:.1f} ms\n"
-            f"[white]Passed:[/white] {best.passed}",
+            f"[bold green]Fastest Variant:[/bold green] {fastest.variant_name}\n"
+            f"[white]Runtime:[/white] {fastest.runtime_ms:.1f} ms\n"
+            f"[white]Passed:[/white] {fastest.passed}",
             border_style="green",
         )
     )
 
     if Confirm.ask("Show solution code for this variant?", default=False):
-        # Load saved solution artifact from results folder
         run_dir = next((p for p in orch.artifacts_dir.iterdir() if p.is_dir()), None)
         if run_dir:
-            variant_dir = run_dir / best.variant_name
+            variant_dir = run_dir / fastest.variant_name
             code_path = variant_dir / "solution.py"
             if code_path.exists():
                 code_text = code_path.read_text()
-                console.print(Panel.fit(code_text, title=f"{best.variant_name}.py"))
+                console.print(Panel.fit(code_text, title=f"{fastest.variant_name}.py"))
             else:
                 console.print("[red]No solution file found.[/red]")
-
+            
     console.print("\n[bold magenta]🎉 Done![/bold magenta]\n")
 
 
