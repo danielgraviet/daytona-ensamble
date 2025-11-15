@@ -16,7 +16,8 @@ Generate multiple LLM-written solutions for a coding task, execute each one in a
 - **🧭 Human-in-the-loop selection** – focus on correctness, speed, memory, or readability when reviewing the run.
 - **📊 Rich CLI output** – runtime, pass/fail info, stdout/stderr, and failure traces.
 - **📁 Saved artifacts** – every run is persisted to `results/run_<id>` for later inspection or training.
-
+- **🛒 Variant Marketplace** – plug-and-play solution “styles” you can enable, disable, or swap instantly to customize your ensemble.
+- **📈 Monitoring Dashboard** – a lightweight live dashboard to track runs, model performance, and sandbox activity in real time.
 ---
 
 ## How It Works
