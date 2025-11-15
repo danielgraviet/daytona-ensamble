@@ -1,0 +1,13 @@
+```python
+def has_close_elements(numbers: List[float], threshold: float) -> bool:
+    # Iterate over each pair of distinct numbers in the list
+    for i in range(len(numbers)):
+        for j in range(i + 1, len(numbers)):
+            # Calculate the absolute difference between the two numbers
+            difference = abs(numbers[i] - numbers[j])
+            # Check if the difference is less than the threshold
+            if difference < threshold:
+                return True
+    # If no such pair is found, return False
+    return False
+```

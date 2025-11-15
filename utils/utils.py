@@ -6,6 +6,9 @@ if TYPE_CHECKING:
     from agents.variants import VariantSpec
 
 _PAYLOAD_TEMPLATE = """\
+# === IMPORTS
+from typing import List
+
 # === GENERATED SOLUTION ===
 {solution}
 

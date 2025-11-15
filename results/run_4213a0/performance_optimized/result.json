@@ -1,0 +1,9 @@
+{
+  "variant_name": "performance_optimized",
+  "passed": true,
+  "stdout": "TESTS PASSED",
+  "stderr": "",
+  "runtime_ms": 818.0587499991816,
+  "exit_code": 0,
+  "generation_ms": 1108.6660000000848
+}

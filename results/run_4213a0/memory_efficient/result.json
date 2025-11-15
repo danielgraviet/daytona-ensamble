@@ -1,0 +1,9 @@
+{
+  "variant_name": "memory_efficient",
+  "passed": true,
+  "stdout": "TESTS PASSED",
+  "stderr": "",
+  "runtime_ms": 608.1487080009538,
+  "exit_code": 0,
+  "generation_ms": 1491.2635420005245
+}

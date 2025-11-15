@@ -1,0 +1,9 @@
+{
+  "variant_name": "baseline",
+  "passed": true,
+  "stdout": "TESTS PASSED",
+  "stderr": "",
+  "runtime_ms": 1292.6780409979983,
+  "exit_code": 0,
+  "generation_ms": 1445.31066700074
+}

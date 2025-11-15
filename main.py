@@ -1,34 +1,17 @@
-def has_close_elements(numbers, threshold):
-    for idx, elem in enumerate(numbers):
-        for idx2, elem2 in enumerate(numbers):
-            if idx != idx2:
-                distance = abs(elem - elem2)
-                if distance < threshold:
-                    return True
-    return False
+import asyncio
+from agents.martian_client import MartianAgent
+from agents.orchestrator import Orchestrator
+from human_eval import human_eval_loader
 
-# === HUMAN EVAL TESTS ===
-METADATA = {
-'author': 'jt',
-'dataset': 'test'
-}
+async def main():
+    ds = human_eval_loader._load_human_eval_data()
+    problem = ds[0]
+    agent = MartianAgent()
+    orch = Orchestrator(llm=agent)
+    results = await orch.run_problem(problem)
+    for r in results:
+        print(r)
 
-def check(candidate):
-    assert candidate([1.0, 2.0, 3.9, 4.0, 5.0, 2.2], 0.3) == True
-    assert candidate([1.0, 2.0, 3.9, 4.0, 5.0, 2.2], 0.05) == False
-    assert candidate([1.0, 2.0, 5.9, 4.0, 5.0], 0.95) == True
-    assert candidate([1.0, 2.0, 5.9, 4.0, 5.0], 0.8) == False
-    assert candidate([1.0, 2.0, 3.0, 4.0, 5.0, 2.0], 0.1) == True
-    assert candidate([1.1, 2.2, 3.1, 4.1, 5.1], 1.0) == True
-    assert candidate([1.1, 2.2, 3.1, 4.1, 5.1], 0.5) == False
+    await orch.shutdown()
 
-# === EXECUTION WRAPPER ===
-if __name__ == "__main__":
-    try:
-        check(has_close_elements)
-        print("TESTS PASSED")
-    except Exception:
-        import traceback
-        print("TESTS FAILED")
-        traceback.print_exc()
-        raise
+asyncio.run(main())

@@ -1,0 +1,37 @@
+You are an expert Python programmer.
+
+Your task is to write a correct implementation of the following function.
+Follow the variant instructions carefully.
+
+# Problem Description
+from typing import List
+
+
+def has_close_elements(numbers: List[float], threshold: float) -> bool:
+    """ Check if in given list of numbers, are any two numbers closer to each other than
+    given threshold.
+    >>> has_close_elements([1.0, 2.0, 3.0], 0.5)
+    False
+    >>> has_close_elements([1.0, 2.8, 3.0, 4.0, 5.0, 2.0], 0.3)
+    True
+    """
+
+# Requirements
+- You must implement the function described above.
+- Use the function signature exactly as provided.
+- Do NOT change parameter names or types.
+- Do NOT include any test code.
+- Do NOT include print statements.
+- Do NOT include extra text outside the python code block.
+- Only return the function implementation.
+- The final answer MUST be wrapped in a Python code fence like:
+
+# Variant Instructions
+Write a highly optimized implementation focusing on speed and algorithmic efficiency. Avoid unnecessary work, minimize loops, prefer O(n) solutions when possible, and leverage Python built-ins that offer performance benefits. Do not sacrifice correctness. Return only the function implementation wrapped in Python code fences like:
+```python
+<your code here>
+```
+
+# Output Format
+Return ONLY one python code block with the function implementation.
+Do not include explanations, comments (unless allowed by variant), or any text outside the code block.
