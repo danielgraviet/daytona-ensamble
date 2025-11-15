@@ -1,4 +1,8 @@
-# Daytona Code Ensemble
+<div align="center">
+  <img src="assets/code_quintet_logo.png" alt="Code Quintet Logo" width="220">
+  <h1>🎶 Code Quintet – Daytona Code Ensemble 🎶</h1>
+  <p>Five coordinated LLM voices tackling every HumanEval score.</p>
+</div>
 
 Generate multiple LLM-written solutions for a coding task, execute each one in an isolated Daytona sandbox, and instantly compare correctness, runtime, and other qualities. Powered by Daytona sandboxes, HumanEval, and a curated set of prompt variants.
 
