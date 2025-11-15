@@ -5,6 +5,7 @@ from agents.variants import VARIANTS
 from utils import utils
 from human_eval import human_eval_loader
 from models.types import RunResult
+from tqdm.asyncio import tqdm_asyncio
 
 
 class Orchestrator:
@@ -20,5 +21,7 @@ class Orchestrator:
             tasks.append(task)
 
         # LLM parallel execution
-        return await asyncio.gather(*tasks)
+        results = await tqdm_asyncio.gather(*tasks)
+        return results
+    
     

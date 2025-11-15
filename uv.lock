@@ -573,6 +573,7 @@ dependencies = [
     { name = "python-dotenv" },
     { name = "rich" },
     { name = "tabulate" },
+    { name = "tqdm" },
 ]
 
 [package.metadata]
@@ -588,6 +589,7 @@ requires-dist = [
     { name = "python-dotenv" },
     { name = "rich" },
     { name = "tabulate" },
+    { name = "tqdm", specifier = ">=4.67.1" },
 ]
 
 [[package]]

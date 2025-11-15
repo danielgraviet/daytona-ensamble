@@ -58,6 +58,7 @@ def test_format_prompt_for_baseline_variant():
     print("=" * 80)
     print(prompt)
 
+
 def test_format_prompt_for_external_lib_variant():
     variant = NO_EXTERNAL_LIBS
     prompt = utils.format_prompt_for_agent(MOCK_PROBLEM, variant)
