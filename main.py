@@ -1,4 +1,3 @@
-#!/usr/bin/env python3
 import asyncio
 import random
 from rich.console import Console
@@ -13,10 +12,10 @@ from human_eval import human_eval_loader
 console = Console()
 
 AVAILABLE_MODELS = [
-    "openai/gpt-4.1-nano",
     "openai/gpt-4.1-mini",
-    "openai/gpt-4.1",
-    "openai/gpt-4.1-large",
+    "anthropic/claude-3-7-sonnet-latest",
+    "mistralai/magistral-medium-2506",
+    "deepseek/deepseek-v3.1-terminus",
 ]
 
 def _banner():
@@ -28,26 +27,11 @@ def _banner():
         )
     )
 
-async def main():
-    _banner()
-
+async def _run_single_problem(orch, model_name):
+    """Runs one loop of: select problem → solve → show results."""
+    
     # -----------------------------------------
-    # 1. Ask for Model
-    # -----------------------------------------
-    console.print("[bold white]Select an LLM model:[/bold white]")
-    for i, m in enumerate(AVAILABLE_MODELS):
-        console.print(f"[cyan]{i+1}.[/cyan] {m}")
-
-    model_choice = Prompt.ask(
-        "\nEnter model number",
-        choices=[str(i + 1) for i in range(len(AVAILABLE_MODELS))],
-    )
-    model_name = AVAILABLE_MODELS[int(model_choice) - 1]
-
-    console.print(f"\n[green]✓ Using model:[/green] [bold]{model_name}[/bold]\n")
-
-    # -----------------------------------------
-    # 2. Ask for HumanEval task
+    # 1. Ask for HumanEval task
     # -----------------------------------------
     console.print("[bold white]Which HumanEval problem do you want to run?[/bold white]")
     console.print("[cyan]Example: HumanEval/0, HumanEval/13[/cyan]")
@@ -63,7 +47,7 @@ async def main():
         console.print(f"[green]✓ Randomly selected:[/green] [bold]{task_id}[/bold]\n")
 
     # -----------------------------------------
-    # 3. Load Problem
+    # 2. Load Problem
     # -----------------------------------------
     problem = human_eval_loader._load_human_eval_problem(task_id)
     if problem is None:
@@ -79,18 +63,21 @@ async def main():
     )
 
     # -----------------------------------------
-    # 4. Instantiate LLM + Orchestrator
+    # 3. Run orchestration
     # -----------------------------------------
-    agent = MartianAgent(model=model_name)
-    orch = Orchestrator(llm=agent)
-
-    # -----------------------------------------
-    # 5. Run orchestration
-    # -----------------------------------------
-    console.print("[bold green]Starting ensemble generation + execution...[/bold green]\n")
+    console.print(
+        f"[bold green]Starting ensemble generation + execution using {model_name}...[/bold green]\n"
+    )
     results = await orch.run_problem(problem)
 
-    fastest = min(results, key=lambda r: r.runtime_ms)
+    # -----------------------------------------
+    # 4. Determine fastest passing variant
+    # -----------------------------------------
+    passing = [r for r in results if r.passed]
+    if passing:
+        fastest = min(passing, key=lambda r: r.runtime_ms)
+    else:
+        fastest = min(results, key=lambda r: r.runtime_ms)
 
     console.print(
         Panel.fit(
@@ -101,6 +88,9 @@ async def main():
         )
     )
 
+    # -----------------------------------------
+    # 5. Offer to show code
+    # -----------------------------------------
     if Confirm.ask("Show solution code for this variant?", default=False):
         run_dir = next((p for p in orch.artifacts_dir.iterdir() if p.is_dir()), None)
         if run_dir:
@@ -111,8 +101,40 @@ async def main():
                 console.print(Panel.fit(code_text, title=f"{fastest.variant_name}.py"))
             else:
                 console.print("[red]No solution file found.[/red]")
-            
-    console.print("\n[bold magenta]🎉 Done![/bold magenta]\n")
+
+async def main():
+    _banner()
+
+    # -------------------------------------------------
+    # 1. Select model once for entire interactive session
+    # -------------------------------------------------
+    console.print("[bold white]Select an LLM model:[/bold white]")
+    for i, m in enumerate(AVAILABLE_MODELS):
+        console.print(f"[cyan]{i+1}.[/cyan] {m}")
+
+    model_choice = Prompt.ask(
+        "\nEnter model number",
+        choices=[str(i + 1) for i in range(len(AVAILABLE_MODELS))],
+    )
+    model_name = AVAILABLE_MODELS[int(model_choice) - 1]
+
+    console.print(f"\n[green]✓ Using model:[/green] [bold]{model_name}[/bold]\n")
+
+    # -------------------------------------------------
+    # 2. Create agent + orchestrator once
+    # -------------------------------------------------
+    agent = MartianAgent(model=model_name)
+    orch = Orchestrator(llm=agent)
+
+    # -------------------------------------------------
+    # 3. Interactive loop
+    # -------------------------------------------------
+    while True:
+        await _run_single_problem(orch, model_name)
+
+        if not Confirm.ask("\nRun another problem?", default=True):
+            console.print("\n[bold magenta]🎉 Thanks for using Code Ensemble![/bold magenta]\n")
+            break
 
 
 if __name__ == "__main__":
