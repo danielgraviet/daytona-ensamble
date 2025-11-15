@@ -22,3 +22,14 @@ def _load_human_eval_data() -> list[_HumanEvalDataPoint]:
         )
         results.append(problem)
     return results
+
+def _load_human_eval_problem(task_id: str) -> _HumanEvalDataPoint | None:
+    """
+    Return a single HumanEval problem by task_id, e.g. 'HumanEval/13'.
+    Returns None if not found.
+    """
+    problems = _load_human_eval_data()
+    for p in problems:
+        if p.task_id == task_id:
+            return p
+    return None
