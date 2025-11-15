@@ -1,5 +1,10 @@
-from models import types
+from __future__ import annotations
+
+import json
+from pathlib import Path
 from typing import List
+
+from models import types
 
 
 BASELINE = types.VariantSpec(
@@ -65,3 +70,29 @@ VARIANTS: List[types.VariantSpec] = [
     PERFORMANCE_OPTIMIZED,
     SUPER_READABLE,
 ]
+
+MARKETPLACE_DIR = Path("variants_marketplace")
+
+
+def _load_marketplace_variants(directory: Path) -> List[types.VariantSpec]:
+    variants: List[types.VariantSpec] = []
+    if not directory.exists():
+        return variants
+
+    for manifest in sorted(directory.glob("*.json")):
+        try:
+            data = json.loads(manifest.read_text())
+        except json.JSONDecodeError:
+            continue
+
+        name = data.get("name")
+        description = data.get("description")
+        if not name or not description:
+            continue
+
+        variants.append(types.VariantSpec(name=name, description=description))
+
+    return variants
+
+
+VARIANTS.extend(_load_marketplace_variants(MARKETPLACE_DIR))

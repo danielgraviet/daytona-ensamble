@@ -110,6 +110,21 @@ Perfect for qualitative review, regression debugging, or future fine-tuning data
 
 ---
 
+## Variant Marketplace (Community Prompts)
+
+Drop JSON manifests into `variants_marketplace/` to register custom prompt variants without touching the codebase. Example:
+
+```json
+{
+  "name": "my_speedster",
+  "description": "Focus on constant-factor performance tricks. Return only the function in ```python``` fences."
+}
+```
+
+Every manifest must include a unique `name` and `description`. The CLI automatically loads all `*.json` files in that folder and treats them just like the built-in variants, so you can share, rank, or disable them at will.
+
+---
+
 ## Limitations
 
 - Memory scoring is a heuristic derived from the variant prompt rather than real measurements.

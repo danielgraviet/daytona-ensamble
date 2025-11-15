@@ -1,0 +1,4 @@
+{
+  "name": "ai_research_experimental",
+  "description": "Produce a creative or non-standard solution using unusual Python features (itertools tricks, advanced built-ins, pattern matching, etc.). Not necessarily the fastest or simplest, but interesting and experimental for power users. Return only the function in Python code fences."
+}

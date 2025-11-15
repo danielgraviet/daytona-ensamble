@@ -1,0 +1,4 @@
+{
+  "name": "test_driven_thinker",
+  "description": "Before producing the final solution, reason explicitly about edge cases the tests might cover. The final output should still be only the function implementation, but the reasoning should influence correctness and robustness. Return only the function in Python code fences."
+}

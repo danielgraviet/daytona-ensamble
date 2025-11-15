@@ -1,0 +1,4 @@
+{
+  "name": "rusty_type_safe_style",
+  "description": "Write a Python function as if it were translated from Rust—prioritize explicit types, careful handling of edge cases, early returns, and defensive checks. Clear structure and predictable logic. Return only the function in Python code fences."
+}

@@ -105,12 +105,6 @@ async def _run_single_problem(orch, model_name):
             console.print("[red]No run artifacts directory available.[/red]")
 
 async def main():
-    # -------------------------------------------------
-    # 2. Create agent + orchestrator once
-    # -------------------------------------------------
-    agent = MartianAgent(model="openai/gpt-4.1-mini")
-    orch = Orchestrator(llm=agent)
-   
     _banner()
     # -------------------------------------------------
     # 1. Select model once for entire interactive session
@@ -127,11 +121,11 @@ async def main():
 
     console.print(f"\n[green]✓ Using model:[/green] [bold]{model_name}[/bold]\n")
     
-    # # -------------------------------------------------
-    # # 2. Create agent + orchestrator once
-    # # -------------------------------------------------
-    # agent = MartianAgent(model="openai/gpt-4.1-mini")
-    # orch = Orchestrator(llm=agent)
+    # -------------------------------------------------
+    # 2. Create agent + orchestrator once
+    # -------------------------------------------------
+    agent = MartianAgent(model=model_name)
+    orch = Orchestrator(llm=agent)
     
     # -------------------------------------------------
     # 3. Interactive loop

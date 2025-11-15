@@ -1,0 +1,4 @@
+{
+  "name": "pythonic_one_liner_master",
+  "description": "Attempt to compress the entire solution into the shortest possible form, ideally a one-liner or near one-liner, while remaining correct and Pythonic. Prefer comprehensions and built-ins. Return only the function in Python code fences."
+}
