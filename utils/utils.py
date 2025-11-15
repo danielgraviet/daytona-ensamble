@@ -19,8 +19,9 @@ if __name__ == "__main__":
         raise
 """
 
+
 _SOLUTION_PATTERN = re.compile(
-    r"<solution>\s*(.*?)\s*</solution>",
+    r"```python\s*(.*?)\s*```",
     re.DOTALL | re.IGNORECASE
 )
 
