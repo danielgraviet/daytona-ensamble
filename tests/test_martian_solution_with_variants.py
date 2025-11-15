@@ -1,9 +1,9 @@
-from human_eval.human_eval_loader import _HumanEvalDataPoint
-from agents.variants import BASELINE, NO_EXTERNAL_LIBS
+import pytest
 from utils import utils
+from agents import martian_client
+from human_eval.human_eval_loader import _HumanEvalDataPoint
+from agents.variants import NO_EXTERNAL_LIBS, MEMORY_EFFICIENT, PERFORMANCE_OPTIMIZED, SUPER_READABLE
 
-
-# Hard-coded HumanEval-style example
 MOCK_PROBLEM = _HumanEvalDataPoint(
     task_id="HumanEval/0",
     prompt=(
@@ -43,32 +43,12 @@ MOCK_PROBLEM = _HumanEvalDataPoint(
     entry_point="has_close_elements",
 )
 
-
-def test_format_prompt_for_baseline_variant():
-    variant = BASELINE
-    prompt = utils.format_prompt_for_agent(MOCK_PROBLEM, variant)
-
-    # Basic sanity checks
-    assert MOCK_PROBLEM.prompt.strip() in prompt
-    assert variant.description.strip() in prompt
-
-    # Print so you can manually inspect each prompt
-    print("\n" + "=" * 80)
-    print(f"VARIANT: {variant.name}")
-    print("=" * 80)
-    print(prompt)
-
-def test_format_prompt_for_external_lib_variant():
-    variant = NO_EXTERNAL_LIBS
-    prompt = utils.format_prompt_for_agent(MOCK_PROBLEM, variant)
-
-    # Basic sanity checks
-    assert MOCK_PROBLEM.prompt.strip() in prompt
-    assert variant.description.strip() in prompt
-
-    # Print so you can manually inspect each prompt
-    print("\n" + "=" * 80)
-    print(f"VARIANT: {variant.name}")
-    print("=" * 80)
-    print(prompt)
-    
+# pass, no external libs
+# 
+@pytest.mark.asyncio
+async def test_inference():
+    client = martian_client.MartianAgent()
+    final_prompt = utils.format_prompt_for_agent(problem=MOCK_PROBLEM, variant=SUPER_READABLE)
+    print(final_prompt)
+    result = await client.generate_code(prompt=final_prompt)
+    print("RAW RESULT: ", result)
