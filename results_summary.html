@@ -101,1210 +101,15 @@
 </header>
 <div class='container'>
 <section class='run-card'>
-<h2 class='run-title'>run_33a74f</h2>
+<h2 class='run-title'>run_45e9e1</h2>
 <table>
 <tr><th>Variant</th><th>Status</th><th>Runtime (ms)</th><th>Exit Code</th><th>Generation (ms)</th></tr>
 <tr>
 <td>baseline</td>
 <td><span class='tag tag-pass'>PASS</span></td>
-<td>113.5</td>
+<td>506.1</td>
 <td>0</td>
-<td>2112.3</td>
-</tr>
-<tr>
-<td colspan='5'>
-<details>
-<summary>View solution & logs</summary>
-<h4>solution.py</h4>
-<pre>
-def prime_fib(n: int):
-    def is_prime(x):
-        if x &lt; 2:
-            return False
-        if x == 2:
-            return True
-        if x % 2 == 0:
-            return False
-        i = 3
-        while i * i &lt;= x:
-            if x % i == 0:
-                return False
-            i += 2
-        return True
-
-    a, b = 0, 1
-    count = 0
-    while True:
-        a, b = b, a + b
-        if is_prime(a):
-            count += 1
-            if count == n:
-                return a
-</pre>
-<h4>stdout</h4>
-<pre>
-TESTS PASSED
-</pre>
-</details>
-</td>
-</tr>
-<tr>
-<td>memory_efficient</td>
-<td><span class='tag tag-pass'>PASS</span></td>
-<td>144.4</td>
-<td>0</td>
-<td>2763.8</td>
-</tr>
-<tr>
-<td colspan='5'>
-<details>
-<summary>View solution & logs</summary>
-<h4>solution.py</h4>
-<pre>
-def prime_fib(n: int):
-    def is_prime(x):
-        if x &lt; 2:
-            return False
-        if x in (2, 3):
-            return True
-        if x % 2 == 0 or x % 3 == 0:
-            return False
-        i = 5
-        while i * i &lt;= x:
-            if x % i == 0 or x % (i + 2) == 0:
-                return False
-            i += 6
-        return True
-
-    a, b = 0, 1
-    count = 0
-    while True:
-        a, b = b, a + b
-        if is_prime(a):
-            count += 1
-            if count == n:
-                return a
-</pre>
-<h4>stdout</h4>
-<pre>
-TESTS PASSED
-</pre>
-</details>
-</td>
-</tr>
-<tr>
-<td>no_external_libs</td>
-<td><span class='tag tag-pass'>PASS</span></td>
-<td>120.9</td>
-<td>0</td>
-<td>2113.7</td>
-</tr>
-<tr>
-<td colspan='5'>
-<details>
-<summary>View solution & logs</summary>
-<h4>solution.py</h4>
-<pre>
-def prime_fib(n: int):
-    def is_prime(x):
-        if x &lt; 2:
-            return False
-        if x == 2:
-            return True
-        if x % 2 == 0:
-            return False
-        i = 3
-        while i * i &lt;= x:
-            if x % i == 0:
-                return False
-            i += 2
-        return True
-
-    a, b = 0, 1
-    count = 0
-    while True:
-        a, b = b, a + b
-        if is_prime(a):
-            count += 1
-            if count == n:
-                return a
-</pre>
-<h4>stdout</h4>
-<pre>
-TESTS PASSED
-</pre>
-</details>
-</td>
-</tr>
-<tr>
-<td>performance_optimized</td>
-<td><span class='tag tag-pass'>PASS</span></td>
-<td>188.4</td>
-<td>0</td>
-<td>2408.7</td>
-</tr>
-<tr>
-<td colspan='5'>
-<details>
-<summary>View solution & logs</summary>
-<h4>solution.py</h4>
-<pre>
-def prime_fib(n: int):
-    def is_prime(x):
-        if x &lt; 2:
-            return False
-        if x in (2, 3):
-            return True
-        if x % 2 == 0 or x % 3 == 0:
-            return False
-        i = 5
-        while i * i &lt;= x:
-            if x % i == 0 or x % (i + 2) == 0:
-                return False
-            i += 6
-        return True
-
-    a, b = 1, 1
-    count = 0
-    while True:
-        a, b = b, a + b
-        if is_prime(a):
-            count += 1
-            if count == n:
-                return a
-</pre>
-<h4>stdout</h4>
-<pre>
-TESTS PASSED
-</pre>
-</details>
-</td>
-</tr>
-<tr>
-<td>super_readable</td>
-<td><span class='tag tag-pass'>PASS</span></td>
-<td>113.8</td>
-<td>0</td>
-<td>3725.3</td>
-</tr>
-<tr>
-<td colspan='5'>
-<details>
-<summary>View solution & logs</summary>
-<h4>solution.py</h4>
-<pre>
-def prime_fib(n: int):
-    &quot;&quot;&quot;
-    prime_fib returns n-th number that is a Fibonacci number and it&#x27;s also prime.
-    &gt;&gt;&gt; prime_fib(1)
-    2
-    &gt;&gt;&gt; prime_fib(2)
-    3
-    &gt;&gt;&gt; prime_fib(3)
-    5
-    &gt;&gt;&gt; prime_fib(4)
-    13
-    &gt;&gt;&gt; prime_fib(5)
-    89
-    &quot;&quot;&quot;
-
-    def is_prime(num):
-        # Handle edge cases for numbers less than 2
-        if num &lt; 2:
-            return False
-        # Check divisibility from 2 up to the square root of num
-        for i in range(2, int(num ** 0.5) + 1):
-            if num % i == 0:
-                return False
-        return True
-
-    # Initialize the first two Fibonacci numbers
-    a, b = 0, 1
-    count = 0  # Count of prime Fibonacci numbers found
-
-    # Loop until we find the n-th prime Fibonacci number
-    while True:
-        a, b = b, a + b  # Generate next Fibonacci number
-        if is_prime(a):
-            count += 1
-            if count == n:
-                return a
-</pre>
-<h4>stdout</h4>
-<pre>
-TESTS PASSED
-</pre>
-</details>
-</td>
-</tr>
-</table>
-</section>
-<section class='run-card'>
-<h2 class='run-title'>run_37f96f</h2>
-<table>
-<tr><th>Variant</th><th>Status</th><th>Runtime (ms)</th><th>Exit Code</th><th>Generation (ms)</th></tr>
-<tr>
-<td>baseline</td>
-<td><span class='tag tag-pass'>PASS</span></td>
-<td>119.4</td>
-<td>0</td>
-<td>1884.1</td>
-</tr>
-<tr>
-<td colspan='5'>
-<details>
-<summary>View solution & logs</summary>
-<h4>solution.py</h4>
-<pre>
-def match_parens(lst):
-    def is_good(s):
-        balance = 0
-        for c in s:
-            if c == &#x27;(&#x27;:
-                balance += 1
-            else:
-                balance -= 1
-            if balance &lt; 0:
-                return False
-        return balance == 0
-
-    return &#x27;Yes&#x27; if is_good(lst[0] + lst[1]) or is_good(lst[1] + lst[0]) else &#x27;No&#x27;
-</pre>
-<h4>stdout</h4>
-<pre>
-TESTS PASSED
-</pre>
-</details>
-</td>
-</tr>
-<tr>
-<td>memory_efficient</td>
-<td><span class='tag tag-pass'>PASS</span></td>
-<td>131.6</td>
-<td>0</td>
-<td>1769.6</td>
-</tr>
-<tr>
-<td colspan='5'>
-<details>
-<summary>View solution & logs</summary>
-<h4>solution.py</h4>
-<pre>
-def match_parens(lst):
-    def good(s):
-        bal = 0
-        for c in s:
-            if c == &#x27;(&#x27;:
-                bal += 1
-            else:
-                bal -= 1
-                if bal &lt; 0:
-                    return False
-        return bal == 0
-    return &#x27;Yes&#x27; if good(lst[0] + lst[1]) or good(lst[1] + lst[0]) else &#x27;No&#x27;
-</pre>
-<h4>stdout</h4>
-<pre>
-TESTS PASSED
-</pre>
-</details>
-</td>
-</tr>
-<tr>
-<td>no_external_libs</td>
-<td><span class='tag tag-pass'>PASS</span></td>
-<td>196.2</td>
-<td>0</td>
-<td>1985.8</td>
-</tr>
-<tr>
-<td colspan='5'>
-<details>
-<summary>View solution & logs</summary>
-<h4>solution.py</h4>
-<pre>
-def match_parens(lst):
-    def is_good(s):
-        balance = 0
-        for ch in s:
-            if ch == &#x27;(&#x27;:
-                balance += 1
-            else:
-                balance -= 1
-            if balance &lt; 0:
-                return False
-        return balance == 0
-
-    return &quot;Yes&quot; if is_good(lst[0] + lst[1]) or is_good(lst[1] + lst[0]) else &quot;No&quot;
-</pre>
-<h4>stdout</h4>
-<pre>
-TESTS PASSED
-</pre>
-</details>
-</td>
-</tr>
-<tr>
-<td>performance_optimized</td>
-<td><span class='tag tag-pass'>PASS</span></td>
-<td>119.9</td>
-<td>0</td>
-<td>1636.9</td>
-</tr>
-<tr>
-<td colspan='5'>
-<details>
-<summary>View solution & logs</summary>
-<h4>solution.py</h4>
-<pre>
-def match_parens(lst):
-    def check(s):
-        bal = 0
-        for c in s:
-            bal += 1 if c == &#x27;(&#x27; else -1
-            if bal &lt; 0:
-                return False
-        return bal == 0
-    a, b = lst
-    return &#x27;Yes&#x27; if check(a + b) or check(b + a) else &#x27;No&#x27;
-</pre>
-<h4>stdout</h4>
-<pre>
-TESTS PASSED
-</pre>
-</details>
-</td>
-</tr>
-<tr>
-<td>super_readable</td>
-<td><span class='tag tag-pass'>PASS</span></td>
-<td>188.8</td>
-<td>0</td>
-<td>4811.7</td>
-</tr>
-<tr>
-<td colspan='5'>
-<details>
-<summary>View solution & logs</summary>
-<h4>solution.py</h4>
-<pre>
-def match_parens(lst):
-    &#x27;&#x27;&#x27;
-    You are given a list of two strings, both strings consist of open
-    parentheses &#x27;(&#x27; or close parentheses &#x27;)&#x27; only.
-    Your job is to check if it is possible to concatenate the two strings in
-    some order, that the resulting string will be good.
-    A string S is considered to be good if and only if all parentheses in S
-    are balanced. For example: the string &#x27;(())()&#x27; is good, while the string
-    &#x27;())&#x27; is not.
-    Return &#x27;Yes&#x27; if there&#x27;s a way to make a good string, and return &#x27;No&#x27; otherwise.
-    &#x27;&#x27;&#x27;
-    
-    def is_balanced(s):
-        # This helper function checks if the parentheses string s is balanced.
-        balance = 0
-        for char in s:
-            if char == &#x27;(&#x27;:
-                balance += 1
-            else:  # char == &#x27;)&#x27;
-                balance -= 1
-            # If at any point balance is negative, there are more closing than opening parentheses
-            if balance &lt; 0:
-                return False
-        # At the end, balance must be zero for the string to be balanced
-        return balance == 0
-
-    first, second = lst[0], lst[1]
-
-    # Check if concatenating first + second is balanced
-    if is_balanced(first + second):
-        return &#x27;Yes&#x27;
-
-    # Check if concatenating second + first is balanced
-    if is_balanced(second + first):
-        return &#x27;Yes&#x27;
-
-    # If neither concatenation is balanced, return &#x27;No&#x27;
-    return &#x27;No&#x27;
-</pre>
-<h4>stdout</h4>
-<pre>
-TESTS PASSED
-</pre>
-</details>
-</td>
-</tr>
-</table>
-</section>
-<section class='run-card'>
-<h2 class='run-title'>run_3b2ee0</h2>
-<table>
-<tr><th>Variant</th><th>Status</th><th>Runtime (ms)</th><th>Exit Code</th><th>Generation (ms)</th></tr>
-<tr>
-<td>baseline</td>
-<td><span class='tag tag-pass'>PASS</span></td>
-<td>461.7</td>
-<td>0</td>
-<td>868.0</td>
-</tr>
-<tr>
-<td colspan='5'>
-<details>
-<summary>View solution & logs</summary>
-<h4>solution.py</h4>
-<pre>
-from typing import List, Any
-
-def filter_integers(values: List[Any]) -&gt; List[int]:
-    return [v for v in values if type(v) is int]
-</pre>
-<h4>stdout</h4>
-<pre>
-TESTS PASSED
-</pre>
-</details>
-</td>
-</tr>
-<tr>
-<td>memory_efficient</td>
-<td><span class='tag tag-pass'>PASS</span></td>
-<td>438.5</td>
-<td>0</td>
-<td>888.8</td>
-</tr>
-<tr>
-<td colspan='5'>
-<details>
-<summary>View solution & logs</summary>
-<h4>solution.py</h4>
-<pre>
-from typing import List, Any
-
-def filter_integers(values: List[Any]) -&gt; List[int]:
-    return [v for v in values if type(v) is int]
-</pre>
-<h4>stdout</h4>
-<pre>
-TESTS PASSED
-</pre>
-</details>
-</td>
-</tr>
-<tr>
-<td>no_external_libs</td>
-<td><span class='tag tag-pass'>PASS</span></td>
-<td>420.8</td>
-<td>0</td>
-<td>891.2</td>
-</tr>
-<tr>
-<td colspan='5'>
-<details>
-<summary>View solution & logs</summary>
-<h4>solution.py</h4>
-<pre>
-from typing import List, Any
-
-def filter_integers(values: List[Any]) -&gt; List[int]:
-    return [v for v in values if type(v) is int]
-</pre>
-<h4>stdout</h4>
-<pre>
-TESTS PASSED
-</pre>
-</details>
-</td>
-</tr>
-<tr>
-<td>performance_optimized</td>
-<td><span class='tag tag-pass'>PASS</span></td>
-<td>424.7</td>
-<td>0</td>
-<td>996.6</td>
-</tr>
-<tr>
-<td colspan='5'>
-<details>
-<summary>View solution & logs</summary>
-<h4>solution.py</h4>
-<pre>
-from typing import List, Any
-
-def filter_integers(values: List[Any]) -&gt; List[int]:
-    return [v for v in values if type(v) is int]
-</pre>
-<h4>stdout</h4>
-<pre>
-TESTS PASSED
-</pre>
-</details>
-</td>
-</tr>
-<tr>
-<td>super_readable</td>
-<td><span class='tag tag-pass'>PASS</span></td>
-<td>391.9</td>
-<td>0</td>
-<td>1757.2</td>
-</tr>
-<tr>
-<td colspan='5'>
-<details>
-<summary>View solution & logs</summary>
-<h4>solution.py</h4>
-<pre>
-from typing import List, Any
-
-def filter_integers(values: List[Any]) -&gt; List[int]:
-    # Create an empty list to store integers
-    integers_only = []
-    
-    # Iterate over each value in the input list
-    for value in values:
-        # Check if the current value is an integer (but not a boolean)
-        if isinstance(value, int) and not isinstance(value, bool):
-            integers_only.append(value)
-    
-    # Return the list containing only integers
-    return integers_only
-</pre>
-<h4>stdout</h4>
-<pre>
-TESTS PASSED
-</pre>
-</details>
-</td>
-</tr>
-</table>
-</section>
-<section class='run-card'>
-<h2 class='run-title'>run_8c9e79</h2>
-<table>
-<tr><th>Variant</th><th>Status</th><th>Runtime (ms)</th><th>Exit Code</th><th>Generation (ms)</th></tr>
-<tr>
-<td>baseline</td>
-<td><span class='tag tag-pass'>PASS</span></td>
-<td>769.7</td>
-<td>0</td>
-<td>1886.9</td>
-</tr>
-<tr>
-<td colspan='5'>
-<details>
-<summary>View solution & logs</summary>
-<h4>solution.py</h4>
-<pre>
-def make_a_pile(n):
-    stones = [n]
-    step = 2
-    for _ in range(n - 1):
-        stones.append(stones[-1] + step)
-    return stones
-</pre>
-<h4>stdout</h4>
-<pre>
-TESTS PASSED
-</pre>
-</details>
-</td>
-</tr>
-<tr>
-<td>memory_efficient</td>
-<td><span class='tag tag-pass'>PASS</span></td>
-<td>765.8</td>
-<td>0</td>
-<td>1888.9</td>
-</tr>
-<tr>
-<td colspan='5'>
-<details>
-<summary>View solution & logs</summary>
-<h4>solution.py</h4>
-<pre>
-def make_a_pile(n):
-    step = 2
-    stones = n
-    result = [stones]
-    for _ in range(n - 1):
-        stones += step
-        result.append(stones)
-    return result
-</pre>
-<h4>stdout</h4>
-<pre>
-TESTS PASSED
-</pre>
-</details>
-</td>
-</tr>
-<tr>
-<td>no_external_libs</td>
-<td><span class='tag tag-pass'>PASS</span></td>
-<td>597.9</td>
-<td>0</td>
-<td>1386.6</td>
-</tr>
-<tr>
-<td colspan='5'>
-<details>
-<summary>View solution & logs</summary>
-<h4>solution.py</h4>
-<pre>
-def make_a_pile(n):
-    result = [n]
-    step = 2
-    for _ in range(n - 1):
-        result.append(result[-1] + step)
-    return result
-</pre>
-<h4>stdout</h4>
-<pre>
-TESTS PASSED
-</pre>
-</details>
-</td>
-</tr>
-<tr>
-<td>performance_optimized</td>
-<td><span class='tag tag-pass'>PASS</span></td>
-<td>939.0</td>
-<td>0</td>
-<td>1286.9</td>
-</tr>
-<tr>
-<td colspan='5'>
-<details>
-<summary>View solution & logs</summary>
-<h4>solution.py</h4>
-<pre>
-def make_a_pile(n):
-    start = n
-    step = 2
-    return [start + step * i for i in range(n)]
-</pre>
-<h4>stdout</h4>
-<pre>
-TESTS PASSED
-</pre>
-</details>
-</td>
-</tr>
-<tr>
-<td>super_readable</td>
-<td><span class='tag tag-pass'>PASS</span></td>
-<td>771.8</td>
-<td>0</td>
-<td>3479.7</td>
-</tr>
-<tr>
-<td colspan='5'>
-<details>
-<summary>View solution & logs</summary>
-<h4>solution.py</h4>
-<pre>
-def make_a_pile(n):
-    &quot;&quot;&quot;
-    Given a positive integer n, you have to make a pile of n levels of stones.
-    The first level has n stones.
-    The number of stones in the next level is:
-        - the next odd number if n is odd.
-        - the next even number if n is even.
-    Return the number of stones in each level in a list, where element at index
-    i represents the number of stones in the level (i+1).
-    &quot;&quot;&quot;
-    stones_in_levels = [n]  # Start with the first level having n stones
-    
-    # Determine the step to add to get the next number of stones
-    # If n is odd, next odd number is current + 2
-    # If n is even, next even number is current + 2
-    step = 2
-    
-    for _ in range(1, n):
-        next_stones = stones_in_levels[-1] + step
-        stones_in_levels.append(next_stones)
-    
-    return stones_in_levels
-</pre>
-<h4>stdout</h4>
-<pre>
-TESTS PASSED
-</pre>
-</details>
-</td>
-</tr>
-</table>
-</section>
-<section class='run-card'>
-<h2 class='run-title'>run_d29435</h2>
-<table>
-<tr><th>Variant</th><th>Status</th><th>Runtime (ms)</th><th>Exit Code</th><th>Generation (ms)</th></tr>
-<tr>
-<td>ai_research_experimental</td>
-<td><span class='tag tag-pass'>PASS</span></td>
-<td>433.9</td>
-<td>0</td>
-<td>1661.2</td>
-</tr>
-<tr>
-<td colspan='5'>
-<details>
-<summary>View solution & logs</summary>
-<h4>solution.py</h4>
-<pre>
-def encrypt(s):
-    from itertools import cycle
-    def shift(c, n=4):
-        match c:
-            case c if &#x27;a&#x27; &lt;= c &lt;= &#x27;z&#x27;:
-                return chr((ord(c) - 97 + n) % 26 + 97)
-            case c if &#x27;A&#x27; &lt;= c &lt;= &#x27;Z&#x27;:
-                return chr((ord(c) - 65 + n) % 26 + 65)
-            case _:
-                return c
-    return &#x27;&#x27;.join(map(shift, s))
-</pre>
-<h4>stdout</h4>
-<pre>
-TESTS PASSED
-</pre>
-</details>
-</td>
-</tr>
-<tr>
-<td>baseline</td>
-<td><span class='tag tag-pass'>PASS</span></td>
-<td>415.7</td>
-<td>0</td>
-<td>998.4</td>
-</tr>
-<tr>
-<td colspan='5'>
-<details>
-<summary>View solution & logs</summary>
-<h4>solution.py</h4>
-<pre>
-def encrypt(s):
-    result = []
-    for char in s:
-        shifted = chr((ord(char) - ord(&#x27;a&#x27;) + 4) % 26 + ord(&#x27;a&#x27;))
-        result.append(shifted)
-    return &#x27;&#x27;.join(result)
-</pre>
-<h4>stdout</h4>
-<pre>
-TESTS PASSED
-</pre>
-</details>
-</td>
-</tr>
-<tr>
-<td>memory_efficient</td>
-<td><span class='tag tag-pass'>PASS</span></td>
-<td>482.7</td>
-<td>0</td>
-<td>858.9</td>
-</tr>
-<tr>
-<td colspan='5'>
-<details>
-<summary>View solution & logs</summary>
-<h4>solution.py</h4>
-<pre>
-def encrypt(s):
-    return &#x27;&#x27;.join(chr((ord(c) - 97 + 4) % 26 + 97) for c in s)
-</pre>
-<h4>stdout</h4>
-<pre>
-TESTS PASSED
-</pre>
-</details>
-</td>
-</tr>
-<tr>
-<td>no_external_libs</td>
-<td><span class='tag tag-pass'>PASS</span></td>
-<td>427.4</td>
-<td>0</td>
-<td>1172.0</td>
-</tr>
-<tr>
-<td colspan='5'>
-<details>
-<summary>View solution & logs</summary>
-<h4>solution.py</h4>
-<pre>
-def encrypt(s):
-    result = []
-    for c in s:
-        shifted = chr((ord(c) - ord(&#x27;a&#x27;) + 4) % 26 + ord(&#x27;a&#x27;))
-        result.append(shifted)
-    return &#x27;&#x27;.join(result)
-</pre>
-<h4>stdout</h4>
-<pre>
-TESTS PASSED
-</pre>
-</details>
-</td>
-</tr>
-<tr>
-<td>performance_optimized</td>
-<td><span class='tag tag-pass'>PASS</span></td>
-<td>410.1</td>
-<td>0</td>
-<td>898.9</td>
-</tr>
-<tr>
-<td colspan='5'>
-<details>
-<summary>View solution & logs</summary>
-<h4>solution.py</h4>
-<pre>
-def encrypt(s):
-    shift = 4
-    a = ord(&#x27;a&#x27;)
-    return &#x27;&#x27;.join(chr((ord(c) - a + shift) % 26 + a) for c in s)
-</pre>
-<h4>stdout</h4>
-<pre>
-TESTS PASSED
-</pre>
-</details>
-</td>
-</tr>
-<tr>
-<td>pythonic_one_liner_master</td>
-<td><span class='tag tag-pass'>PASS</span></td>
-<td>419.2</td>
-<td>0</td>
-<td>875.4</td>
-</tr>
-<tr>
-<td colspan='5'>
-<details>
-<summary>View solution & logs</summary>
-<h4>solution.py</h4>
-<pre>
-def encrypt(s):return&#x27;&#x27;.join(chr((ord(c)-97+4)%26+97)for c in s)
-</pre>
-<h4>stdout</h4>
-<pre>
-TESTS PASSED
-</pre>
-</details>
-</td>
-</tr>
-<tr>
-<td>rusty_type_safe_style</td>
-<td><span class='tag tag-pass'>PASS</span></td>
-<td>482.4</td>
-<td>0</td>
-<td>2189.9</td>
-</tr>
-<tr>
-<td colspan='5'>
-<details>
-<summary>View solution & logs</summary>
-<h4>solution.py</h4>
-<pre>
-def encrypt(s: str) -&gt; str:
-    if not isinstance(s, str):
-        return &quot;&quot;
-    result = []
-    for ch in s:
-        if &#x27;a&#x27; &lt;= ch &lt;= &#x27;z&#x27;:
-            offset = (ord(ch) - ord(&#x27;a&#x27;) + 4) % 26
-            result.append(chr(ord(&#x27;a&#x27;) + offset))
-        else:
-            return &quot;&quot;
-    return &quot;&quot;.join(result)
-</pre>
-<h4>stdout</h4>
-<pre>
-TESTS PASSED
-</pre>
-</details>
-</td>
-</tr>
-<tr>
-<td>super_readable</td>
-<td><span class='tag tag-pass'>PASS</span></td>
-<td>429.0</td>
-<td>0</td>
-<td>2946.4</td>
-</tr>
-<tr>
-<td colspan='5'>
-<details>
-<summary>View solution & logs</summary>
-<h4>solution.py</h4>
-<pre>
-def encrypt(s):
-    &quot;&quot;&quot;Create a function encrypt that takes a string as an argument and
-    returns a string encrypted with the alphabet being rotated. 
-    The alphabet should be rotated in a manner such that the letters 
-    shift down by two multiplied to two places.
-    For example:
-    encrypt(&#x27;hi&#x27;) returns &#x27;lm&#x27;
-    encrypt(&#x27;asdfghjkl&#x27;) returns &#x27;ewhjklnop&#x27;
-    encrypt(&#x27;gf&#x27;) returns &#x27;kj&#x27;
-    encrypt(&#x27;et&#x27;) returns &#x27;ix&#x27;
-    &quot;&quot;&quot;
-    result = []
-    shift = 4  # 2 multiplied by 2 equals 4
-
-    for char in s:
-        # Calculate the new character by shifting within the alphabet
-        # &#x27;a&#x27; to &#x27;z&#x27; are ASCII codes 97 to 122
-        original_pos = ord(char) - ord(&#x27;a&#x27;)
-        new_pos = (original_pos + shift) % 26
-        new_char = chr(new_pos + ord(&#x27;a&#x27;))
-        result.append(new_char)
-
-    return &#x27;&#x27;.join(result)
-</pre>
-<h4>stdout</h4>
-<pre>
-TESTS PASSED
-</pre>
-</details>
-</td>
-</tr>
-<tr>
-<td>test_driven_thinker</td>
-<td><span class='tag tag-pass'>PASS</span></td>
-<td>494.4</td>
-<td>0</td>
-<td>1481.5</td>
-</tr>
-<tr>
-<td colspan='5'>
-<details>
-<summary>View solution & logs</summary>
-<h4>solution.py</h4>
-<pre>
-def encrypt(s):
-    result = []
-    for char in s:
-        if &#x27;a&#x27; &lt;= char &lt;= &#x27;z&#x27;:
-            shifted = (ord(char) - ord(&#x27;a&#x27;) + 4) % 26 + ord(&#x27;a&#x27;)
-            result.append(chr(shifted))
-        else:
-            result.append(char)
-    return &#x27;&#x27;.join(result)
-</pre>
-<h4>stdout</h4>
-<pre>
-TESTS PASSED
-</pre>
-</details>
-</td>
-</tr>
-</table>
-</section>
-<section class='run-card'>
-<h2 class='run-title'>run_f924f6</h2>
-<table>
-<tr><th>Variant</th><th>Status</th><th>Runtime (ms)</th><th>Exit Code</th><th>Generation (ms)</th></tr>
-<tr>
-<td>baseline</td>
-<td><span class='tag tag-pass'>PASS</span></td>
-<td>407.4</td>
-<td>0</td>
-<td>1189.9</td>
-</tr>
-<tr>
-<td colspan='5'>
-<details>
-<summary>View solution & logs</summary>
-<h4>solution.py</h4>
-<pre>
-def flip_case(string: str) -&gt; str:
-    return string.swapcase()
-</pre>
-<h4>stdout</h4>
-<pre>
-TESTS PASSED
-</pre>
-</details>
-</td>
-</tr>
-<tr>
-<td>community_super_commentary</td>
-<td><span class='tag tag-pass'>PASS</span></td>
-<td>422.5</td>
-<td>0</td>
-<td>3467.9</td>
-</tr>
-<tr>
-<td colspan='5'>
-<details>
-<summary>View solution & logs</summary>
-<h4>solution.py</h4>
-<pre>
-def flip_case(string: str) -&gt; str:
-    &quot;&quot;&quot;
-    For a given string, flip lowercase characters to uppercase and uppercase to lowercase.
-    Non-alphabetic characters remain unchanged.
-
-    Args:
-        string (str): The input string to flip case.
-
-    Returns:
-        str: A new string with cases flipped.
-    &quot;&quot;&quot;
-    # Initialize an empty list to store the flipped characters
-    flipped_chars = []
-
-    # Iterate over each character in the input string
-    for char in string:
-        # Check if the character is lowercase
-        if char.islower():
-            # Convert lowercase character to uppercase and append to the list
-            flipped_chars.append(char.upper())
-        # Check if the character is uppercase
-        elif char.isupper():
-            # Convert uppercase character to lowercase and append to the list
-            flipped_chars.append(char.lower())
-        else:
-            # If the character is neither uppercase nor lowercase (e.g., digit, punctuation),
-            # append it unchanged
-            flipped_chars.append(char)
-
-    # Join all the flipped characters into a single string and return it
-    return &#x27;&#x27;.join(flipped_chars)
-</pre>
-<h4>stdout</h4>
-<pre>
-TESTS PASSED
-</pre>
-</details>
-</td>
-</tr>
-<tr>
-<td>memory_efficient</td>
-<td><span class='tag tag-pass'>PASS</span></td>
-<td>439.0</td>
-<td>0</td>
-<td>1327.2</td>
-</tr>
-<tr>
-<td colspan='5'>
-<details>
-<summary>View solution & logs</summary>
-<h4>solution.py</h4>
-<pre>
-def flip_case(string: str) -&gt; str:
-    return &#x27;&#x27;.join(c.lower() if c.isupper() else c.upper() if c.islower() else c for c in string)
-</pre>
-<h4>stdout</h4>
-<pre>
-TESTS PASSED
-</pre>
-</details>
-</td>
-</tr>
-<tr>
-<td>no_external_libs</td>
-<td><span class='tag tag-pass'>PASS</span></td>
-<td>450.0</td>
-<td>0</td>
-<td>1438.6</td>
-</tr>
-<tr>
-<td colspan='5'>
-<details>
-<summary>View solution & logs</summary>
-<h4>solution.py</h4>
-<pre>
-def flip_case(string: str) -&gt; str:
-    return &#x27;&#x27;.join(c.lower() if c.isupper() else c.upper() if c.islower() else c for c in string)
-</pre>
-<h4>stdout</h4>
-<pre>
-TESTS PASSED
-</pre>
-</details>
-</td>
-</tr>
-<tr>
-<td>performance_optimized</td>
-<td><span class='tag tag-pass'>PASS</span></td>
-<td>457.2</td>
-<td>0</td>
-<td>1026.6</td>
-</tr>
-<tr>
-<td colspan='5'>
-<details>
-<summary>View solution & logs</summary>
-<h4>solution.py</h4>
-<pre>
-def flip_case(string: str) -&gt; str:
-    return string.swapcase()
-</pre>
-<h4>stdout</h4>
-<pre>
-TESTS PASSED
-</pre>
-</details>
-</td>
-</tr>
-<tr>
-<td>super_readable</td>
-<td><span class='tag tag-pass'>PASS</span></td>
-<td>432.6</td>
-<td>0</td>
-<td>2937.5</td>
-</tr>
-<tr>
-<td colspan='5'>
-<details>
-<summary>View solution & logs</summary>
-<h4>solution.py</h4>
-<pre>
-def flip_case(string: str) -&gt; str:
-    &quot;&quot;&quot; For a given string, flip lowercase characters to uppercase and uppercase to lowercase.
-    &gt;&gt;&gt; flip_case(&#x27;Hello&#x27;)
-    &#x27;hELLO&#x27;
-    &quot;&quot;&quot;
-    result_characters = []  # List to hold the flipped characters
-    
-    for character in string:
-        if character.islower():
-            # Convert lowercase character to uppercase
-            flipped_character = character.upper()
-        elif character.isupper():
-            # Convert uppercase character to lowercase
-            flipped_character = character.lower()
-        else:
-            # Non-alphabetic characters remain unchanged
-            flipped_character = character
-        
-        result_characters.append(flipped_character)
-    
-    # Join all flipped characters into a single string and return
-    return &#x27;&#x27;.join(result_characters)
-</pre>
-<h4>stdout</h4>
-<pre>
-TESTS PASSED
-</pre>
-</details>
-</td>
-</tr>
-</table>
-</section>
-<section class='run-card'>
-<h2 class='run-title'>run_ffc816</h2>
-<table>
-<tr><th>Variant</th><th>Status</th><th>Runtime (ms)</th><th>Exit Code</th><th>Generation (ms)</th></tr>
-<tr>
-<td>baseline</td>
-<td><span class='tag tag-pass'>PASS</span></td>
-<td>490.5</td>
-<td>0</td>
-<td>1750.5</td>
+<td>1523.5</td>
 </tr>
 <tr>
 <td colspan='5'>
@@ -1331,9 +136,9 @@ TESTS PASSED
 <tr>
 <td>memory_efficient</td>
 <td><span class='tag tag-pass'>PASS</span></td>
-<td>626.0</td>
+<td>422.3</td>
 <td>0</td>
-<td>1346.1</td>
+<td>1592.5</td>
 </tr>
 <tr>
 <td colspan='5'>
@@ -1344,6 +149,8 @@ TESTS PASSED
 from typing import List
 
 def has_close_elements(numbers: List[float], threshold: float) -&gt; bool:
+    if len(numbers) &lt; 2:
+        return False
     numbers.sort()
     for i in range(1, len(numbers)):
         if numbers[i] - numbers[i-1] &lt; threshold:
@@ -1360,9 +167,9 @@ TESTS PASSED
 <tr>
 <td>no_external_libs</td>
 <td><span class='tag tag-pass'>PASS</span></td>
-<td>840.9</td>
+<td>448.8</td>
 <td>0</td>
-<td>1618.3</td>
+<td>1941.8</td>
 </tr>
 <tr>
 <td colspan='5'>
@@ -1391,9 +198,9 @@ TESTS PASSED
 <tr>
 <td>performance_optimized</td>
 <td><span class='tag tag-pass'>PASS</span></td>
-<td>485.9</td>
+<td>461.8</td>
 <td>0</td>
-<td>1884.1</td>
+<td>1457.4</td>
 </tr>
 <tr>
 <td colspan='5'>
@@ -1406,9 +213,9 @@ from typing import List
 def has_close_elements(numbers: List[float], threshold: float) -&gt; bool:
     if len(numbers) &lt; 2:
         return False
-    sorted_nums = sorted(numbers)
-    for i in range(len(sorted_nums) - 1):
-        if sorted_nums[i+1] - sorted_nums[i] &lt; threshold:
+    numbers_sorted = sorted(numbers)
+    for i in range(1, len(numbers_sorted)):
+        if numbers_sorted[i] - numbers_sorted[i-1] &lt; threshold:
             return True
     return False
 </pre>
@@ -1422,9 +229,9 @@ TESTS PASSED
 <tr>
 <td>super_readable</td>
 <td><span class='tag tag-pass'>PASS</span></td>
-<td>946.8</td>
+<td>431.9</td>
 <td>0</td>
-<td>2998.0</td>
+<td>2597.3</td>
 </tr>
 <tr>
 <td colspan='5'>
@@ -1449,6 +256,141 @@ def has_close_elements(numbers: List[float], threshold: float) -&gt; bool:
     
     # If no pairs are closer than the threshold, return False
     return False
+</pre>
+<h4>stdout</h4>
+<pre>
+TESTS PASSED
+</pre>
+</details>
+</td>
+</tr>
+</table>
+</section>
+<section class='run-card'>
+<h2 class='run-title'>run_5cdd32</h2>
+<table>
+<tr><th>Variant</th><th>Status</th><th>Runtime (ms)</th><th>Exit Code</th><th>Generation (ms)</th></tr>
+<tr>
+<td>baseline</td>
+<td><span class='tag tag-pass'>PASS</span></td>
+<td>226.8</td>
+<td>0</td>
+<td>923.0</td>
+</tr>
+<tr>
+<td colspan='5'>
+<details>
+<summary>View solution & logs</summary>
+<h4>solution.py</h4>
+<pre>
+def eat(number, need, remaining):
+    eaten = min(need, remaining)
+    return [number + eaten, remaining - eaten]
+</pre>
+<h4>stdout</h4>
+<pre>
+TESTS PASSED
+</pre>
+</details>
+</td>
+</tr>
+<tr>
+<td>memory_efficient</td>
+<td><span class='tag tag-pass'>PASS</span></td>
+<td>122.7</td>
+<td>0</td>
+<td>1159.8</td>
+</tr>
+<tr>
+<td colspan='5'>
+<details>
+<summary>View solution & logs</summary>
+<h4>solution.py</h4>
+<pre>
+def eat(number, need, remaining):
+    eaten = min(need, remaining)
+    return [number + eaten, remaining - eaten]
+</pre>
+<h4>stdout</h4>
+<pre>
+TESTS PASSED
+</pre>
+</details>
+</td>
+</tr>
+<tr>
+<td>no_external_libs</td>
+<td><span class='tag tag-pass'>PASS</span></td>
+<td>187.9</td>
+<td>0</td>
+<td>853.6</td>
+</tr>
+<tr>
+<td colspan='5'>
+<details>
+<summary>View solution & logs</summary>
+<h4>solution.py</h4>
+<pre>
+def eat(number, need, remaining):
+    eaten = min(need, remaining)
+    return [number + eaten, remaining - eaten]
+</pre>
+<h4>stdout</h4>
+<pre>
+TESTS PASSED
+</pre>
+</details>
+</td>
+</tr>
+<tr>
+<td>performance_optimized</td>
+<td><span class='tag tag-pass'>PASS</span></td>
+<td>194.5</td>
+<td>0</td>
+<td>1395.2</td>
+</tr>
+<tr>
+<td colspan='5'>
+<details>
+<summary>View solution & logs</summary>
+<h4>solution.py</h4>
+<pre>
+def eat(number, need, remaining):
+    eaten = min(need, remaining)
+    return [number + eaten, remaining - eaten]
+</pre>
+<h4>stdout</h4>
+<pre>
+TESTS PASSED
+</pre>
+</details>
+</td>
+</tr>
+<tr>
+<td>super_readable</td>
+<td><span class='tag tag-pass'>PASS</span></td>
+<td>118.9</td>
+<td>0</td>
+<td>2369.6</td>
+</tr>
+<tr>
+<td colspan='5'>
+<details>
+<summary>View solution & logs</summary>
+<h4>solution.py</h4>
+<pre>
+def eat(number, need, remaining):
+    # Determine how many carrots can actually be eaten: either the needed amount or what&#x27;s left
+    carrots_to_eat = need if need &lt;= remaining else remaining
+    
+    # Calculate the new total number of carrots eaten
+    total_eaten = number + carrots_to_eat
+    
+    # Calculate how many carrots remain after eating
+    carrots_left = remaining - carrots_to_eat
+    
+    # Return the total eaten and the remaining carrots as a list
+    return [total_eaten, carrots_left]
 </pre>
 <h4>stdout</h4>
 <pre>

@@ -21,7 +21,7 @@ AVAILABLE_MODELS = [
 def _banner():
     console.print(
         Panel.fit(
-            "[bold magenta]⚡ Code Ensemble Interactive CLI ⚡[/bold magenta]\n"
+            "[bold magenta]⚡ Code Quintet Interactive CLI ⚡[/bold magenta]\n"
             "Generate multiple variants → execute → evaluate → compare.\n",
             border_style="magenta",
         )
@@ -134,7 +134,7 @@ async def main():
         await _run_single_problem(orch, model_name)
 
         if not Confirm.ask("\nRun another problem?", default=True):
-            console.print("\n[bold magenta]🎉 Thanks for using Code Ensemble![/bold magenta]\n")
+            console.print("\n[bold magenta]🎉 Thanks for using Code Quintet![/bold magenta]\n")
             break
 
 
