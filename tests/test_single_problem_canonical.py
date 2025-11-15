@@ -1,6 +1,4 @@
-from human_eval import human_eval_loader
 from sandbox import sandbox_runner
-import utils
 import pytest
 
 _MOCK_PAYLOAD = """

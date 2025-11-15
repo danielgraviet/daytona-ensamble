@@ -1,3 +1,5 @@
+import re
+
 _PAYLOAD_TEMPLATE = """\
 # === GENERATED SOLUTION ===
 {solution}
@@ -17,6 +19,12 @@ if __name__ == "__main__":
         raise
 """
 
+_SOLUTION_PATTERN = re.compile(
+    r"<solution>\s*(.*?)\s*</solution>",
+    re.DOTALL | re.IGNORECASE
+)
+
+
 def format_payload(solution: str, tests: str, entry_point: str) -> str:
     """Build a single Python script suitable for Daytona's code_run()."""
     return _PAYLOAD_TEMPLATE.format(
@@ -24,3 +32,10 @@ def format_payload(solution: str, tests: str, entry_point: str) -> str:
         tests=tests.strip(),
         entry_point=entry_point.strip(),
     )
+
+def extract_model_solution(raw_response: str) -> str:
+    """Extract solution code from <solution>...</solution> tags."""
+    match = _SOLUTION_PATTERN.search(raw_response)
+    if not match:
+        raise ValueError("Model response does not contain <solution>...</solution> tags.")
+    return match.group(1).strip()
