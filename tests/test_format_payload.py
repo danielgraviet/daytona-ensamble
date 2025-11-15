@@ -1,12 +1,12 @@
 from utils import utils
 _MOCK_SOLUTION = """
-def has_close_elements()
+def has_close_elements(numbers, threshold)
     for idx, elem in enumerate(numbers):
         for idx2, elem2 in enumerate(numbers):
             if idx != idx2:
                 distance = abs(elem - elem2)
-                    if distance < threshold:
-                        return True
+                if distance < threshold:
+                    return True
     return False
 """
 
