@@ -5,7 +5,7 @@ from human_eval import human_eval_loader
 
 async def main():
     ds = human_eval_loader._load_human_eval_data()
-    problem = ds[0]
+    problem = ds[1]
     agent = MartianAgent()
     orch = Orchestrator(llm=agent)
     results = await orch.run_problem(problem)
