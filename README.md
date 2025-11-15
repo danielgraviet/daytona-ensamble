@@ -1,10 +1,10 @@
 # Daytona Code Ensemble
 
-Generate multiple LLM-written solutions for a HumanEval task, execute each one in an isolated Daytona sandbox, and instantly compare correctness, runtime, and other qualities. Powered by Daytona sandboxes, HumanEval, and a curated set of prompt variants.
+Generate multiple LLM-written solutions for a coding task, execute each one in an isolated Daytona sandbox, and instantly compare correctness, runtime, and other qualities. Powered by Daytona sandboxes, HumanEval, and a curated set of prompt variants.
 
 ---
 
-## ✨ Highlights
+## Highlights
 
 - **🔄 Ensemble generation** – five prompt variants (baseline, no-external-libs, memory-efficient, performance, super-readable) per task.
 - **🧪 Real HumanEval tests** – every candidate runs against the official prompt + hidden tests for the task ID.
@@ -15,7 +15,7 @@ Generate multiple LLM-written solutions for a HumanEval task, execute each one i
 
 ---
 
-## 🧠 How It Works
+## How It Works
 
 1. Launch the CLI and choose a HumanEval task (`HumanEval/0…164`) or ask for a random one.
 2. The orchestrator formats the problem for each variant and prompts the configured LLM.
@@ -38,7 +38,7 @@ Goal: speed → Recommended: performance
 
 ---
 
-## 🏗️ Architecture Snapshot
+## Architecture
 
 ```
 project/
@@ -56,7 +56,7 @@ project/
 
 ---
 
-## 🔧 Installation
+## Installation
 
 ```bash
 python3 -m venv .venv
@@ -73,7 +73,7 @@ export OPENAI_API_KEY="your_llm_key"      # or MARTIAN_API_KEY for the Martian a
 
 ---
 
-## ▶️ Usage
+## Usage
 
 ### Run interactively (recommended)
 
@@ -92,9 +92,9 @@ python main.py --model anthropic/claude-3-7-sonnet-latest
 
 ---
 
-## 📂 Run Artifacts
+## Run Artifacts
 
-Each invocation produces `results/run_<id>/<variant>/` containing:
+Each run produces `results/run_<id>/<variant>/` containing:
 
 - `prompt.txt` – formatted prompt for the variant
 - `response.txt` – raw LLM response
@@ -106,7 +106,7 @@ Perfect for qualitative review, regression debugging, or future fine-tuning data
 
 ---
 
-## 🚧 Limitations
+## Limitations
 
 - Memory scoring is a heuristic derived from the variant prompt rather than real measurements.
 - No iterative self-correction loop yet; each variant is a single-shot attempt.
@@ -114,11 +114,11 @@ Perfect for qualitative review, regression debugging, or future fine-tuning data
 
 ---
 
-## 🌱 Roadmap
+## Roadmap
 
-1. Automatic refinement when all variants fail.
+1. Editor integrations (Cursor / VS Code) for one-click ensemble runs.
 2. Train a selector to rank variants without rerunning tests.
-3. Editor integrations (Cursor / VS Code) for one-click ensemble runs.
+3. Automatic refinement when all variants fail. 
 4. Multi-model ensembles (reasoning + speed specialists).
 
 ---
