@@ -88,14 +88,6 @@ python main.py
 
 You will be prompted to pick an LLM model, select a HumanEval task ID (or `random`), and optionally view the generated source for the fastest passing variant.
 
-### Scripted options
-
-```bash
-python main.py --task-id HumanEval/37
-python main.py --model anthropic/claude-3-7-sonnet-latest
-```
-
----
 
 ## Run Artifacts
 
